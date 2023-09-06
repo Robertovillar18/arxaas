@@ -4,14 +4,23 @@ FROM navikt/java:13
 # RUN apt-get update
 # RUN apt-get install ffmpeg libsm6 libxext6  -y
 
-WORKDIR /tmp/src
-RUN wget https://repo1.maven.org/maven2/no/nav/arxaas/2020.02.24-16.04-366f0cde73f4/arxaas-2020.02.24-16.04-366f0cde73f4.jar
+ENV FOLDER /tmp/src
+WORKDIR ${FOLDER}
+#RUN wget https://repo1.maven.org/maven2/no/nav/arxaas/2020.02.24-16.04-366f0cde73f4/arxaas-2020.02.24-16.04-366f0cde73f4.jar
 #--output-document=arxaas.jar
-RUN chmod 777 -R /tmp/src
+RUN chmod 777 -R ${FOLDER}
+
+
+RUN touch ${FOLDER}/exec.sh 
+RUN echo '#!/bin/sh' > ${FOLDER}/exec.sh
+RUN echo "echo 'Application initialized'" >> ${FOLDER}/exec.sh
+RUN echo 'tail -f /dev/null' >> ${FOLDER}/exec.sh
 
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","arxaas.jar"]
+ENTRYPOINT [ "/bin/sh", "${FOLDER}/exec.sh"]
+
+E#NTRYPOINT ["java","-jar","arxaas.jar"]
 # ENTRYPOINT ["python3"]
 # CMD ["main.py"]
 
