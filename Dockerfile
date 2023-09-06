@@ -20,7 +20,7 @@ EXPOSE 8080
 
 ENTRYPOINT [ "/bin/sh", "${FOLDER}/exec.sh"]
 
-E#NTRYPOINT ["java","-jar","arxaas.jar"]
+#ENTRYPOINT ["java","-jar","arxaas.jar"]
 # ENTRYPOINT ["python3"]
 # CMD ["main.py"]
 
