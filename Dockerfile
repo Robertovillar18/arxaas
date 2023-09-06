@@ -18,7 +18,7 @@ RUN echo 'tail -f /dev/null' >> ${FOLDER}/exec.sh
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/bin/sh", "${FOLDER}/exec.sh"]
+ENTRYPOINT [ "/bin/sh", "/app/exec.sh"]
 
 #ENTRYPOINT ["java","-jar","arxaas.jar"]
 # ENTRYPOINT ["python3"]
