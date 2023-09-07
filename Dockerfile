@@ -6,8 +6,7 @@ FROM navikt/java:13
 
 ENV FOLDER /app
 WORKDIR ${FOLDER}
-#RUN wget https://repo1.maven.org/maven2/no/nav/arxaas/2020.02.24-16.04-366f0cde73f4/arxaas-2020.02.24-16.04-366f0cde73f4.jar
-#--output-document=arxaas.jar
+RUN wget https://repo1.maven.org/maven2/no/nav/arxaas/2020.02.24-16.04-366f0cde73f4/arxaas-2020.02.24-16.04-366f0cde73f4.jar --output-document=arxaas.jar
 RUN chmod 777 -R ${FOLDER}
 
 
@@ -18,9 +17,9 @@ RUN echo 'tail -f /dev/null' >> ${FOLDER}/exec.sh
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/bin/sh", "/app/exec.sh"]
+#ENTRYPOINT [ "/bin/sh", "/app/exec.sh"]
 
-#ENTRYPOINT ["java","-jar","arxaas.jar"]
+ENTRYPOINT ["java","-jar","arxaas.jar"]
 # ENTRYPOINT ["python3"]
 # CMD ["main.py"]
 
